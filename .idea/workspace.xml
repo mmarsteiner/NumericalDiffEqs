@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7eae4ae7-b61f-4f7a-8ece-224d6ed3b62a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NumericalDiffEqs.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Gui/NumericalSolverGUI.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Gui/NumericalSolverGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NumericalSolvers/EulerSolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NumericalSolvers/ImpEulerSolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NumericalSolvers/NumericalSolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NumericalSolvers/RK4Solver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Parser/EquationParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Parser/Tokens/Token.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Parser/Tokens/TokenBinaryOp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Parser/Tokens/TokenConstant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Parser/Tokens/TokenLeftParen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Parser/Tokens/TokenRightParen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Parser/Tokens/TokenUnaryOp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Parser/Tokens/TokenVariable.java" afterDir="false" />
-    </list>
+    <list default="true" id="7eae4ae7-b61f-4f7a-8ece-224d6ed3b62a" name="Changes" comment="initial commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,6 +73,21 @@
       <option name="presentableId" value="Default" />
       <updated>1706106778613</updated>
     </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1706379114570</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706379114571</updated>
+    </task>
+    <task id="LOCAL-00002" summary="initial commit">
+      <created>1706379261140</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706379261140</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -107,6 +100,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
