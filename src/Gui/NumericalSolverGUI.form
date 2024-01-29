@@ -65,7 +65,7 @@
           <background color="-1"/>
           <font name="Inconsolata" size="12"/>
           <foreground color="-16777216"/>
-          <text value="Version 1.0 by Matt Marsteiner"/>
+          <text value="Version 1.1 by Matt Marsteiner"/>
         </properties>
       </component>
       <hspacer id="b0e83">
