@@ -1,18 +1,9 @@
 package Parser.Tokens;
 
-public class TokenConstant implements Token {
-    private double value;
-
-    public TokenConstant(double value) {
-        this.value = value;
-    }
-
-    public double getValue() {
-        return value;
-    }
+public record TokenConstant(double value) implements Token {
 
     @Override
-    public String getLabel() {
+    public String label() {
         return String.valueOf(value);
     }
 }

@@ -1,10 +1,10 @@
 package NumericalSolvers;
 
+import Gui.DoublePoint;
 import Gui.NumericalSolverGUI;
-import NumericalSolvers.NumericalSolver;
 import Parser.EquationParser;
 
-import java.util.function.BiFunction;
+import java.util.ArrayList;
 
 public class ImpEulerSolver implements NumericalSolver {
     @Override
@@ -12,6 +12,7 @@ public class ImpEulerSolver implements NumericalSolver {
         gui.getData(gui);
         EquationParser dydxParser = new EquationParser(gui.getDydxInput());
         EquationParser exactParser = null;
+        boolean yInputted = true;
         try {
             exactParser = new EquationParser(gui.getExactSolutionInput());
         } catch (Exception e) {
@@ -19,55 +20,52 @@ public class ImpEulerSolver implements NumericalSolver {
         }
         int n = 0;
         int iterations = Integer.parseInt(gui.getIterationsInput());
-        double h = Double.parseDouble(gui.gethInput());
+        double h = Double.parseDouble(gui.getHInput());
         double xn = Double.parseDouble(gui.getX0Input());
         double yn = Double.parseDouble(gui.getY0Input());
-        double yn1 = 0;
+        double yMin = yn;
+        double yMax = yn;
         StringBuilder resultBuilder = new StringBuilder("|n  |x_n       |y_n       |y         |Error     |% Error   |");
+        ArrayList<DoublePoint> points = new ArrayList<>();
         while(n <= iterations) {
             double f = dydxParser.eval(xn, yn);
             double yn1star = yn + (h * f);
             double fimp = dydxParser.eval(xn + h, yn1star);
-            yn1 = yn + ((h / 2) * (f + fimp));
+            double yn1 = yn + ((h / 2) * (f + fimp));
             double y = Double.NaN;
             double error = Double.NaN;
             double relError = Double.NaN;
             try {
-                y = exactParser.eval(xn, 0); //y doesnt matter here but this jawn built to process it and i aint changing it
+                if (exactParser != null) {
+                    y = exactParser.eval(xn, 0); //y=0 on this line just because it doesnt matter when evaluating the exact solution
+                }
                 error = y - yn;
                 relError = Math.abs(100 * (error / y));
             } catch (Exception e) {
-                //System.out.println("couldnt process optional y expression");
+                yInputted = false;
             }
 
             resultBuilder.append(String.format("\n|%-3d|%-10f|%-10f|%-10f|%-10f|%-10f|", n, xn, yn, y, error, relError));
+            points.add(new DoublePoint(xn, yn));
+            if(y > yMax) {
+                yMax = y;
+            }
+            if(y < yMin) {
+                yMin = y;
+            }
             xn += h;
             yn = yn1;
             n++;
         }
         gui.setOutputText(resultBuilder.toString());
         gui.setData(gui);
-    }
-
-    //old, used for command line version
-    /*@Override
-    public void solve(BiFunction<Double, Double, Double> dydx, double x0, double y0, double h, int iterations) {
-        System.out.println("Solving with improved Euler's method, x0=" + x0 + ", h=" + h + ", " + iterations + " iterations");
-        System.out.println("|n  |x_n        |y_n        |f(x_n,y_n) |y*_(n+1)   |f(xn1,yn1*)|y_(n+1)    |");
-        int n = 0;
-        double xn = x0;
-        double yn = y0;
-        double yn1star = 0;
-        double yn1 = 0;
-        while(n <= iterations) {
-            double f = dydx.apply(xn,yn);
-            yn1star = yn + (h * f);
-            double fimp = dydx.apply(xn + h, yn1star);
-            yn1 = yn + ((h / 2) * (f + fimp));
-            System.out.printf("|%-3d|%-11f|%-11f|%-11f|%-11f|%-11f|%-11f|\n", n, xn, yn, f, yn1star, fimp, yn1);
-            xn += h;
-            yn = yn1;
-            n++;
+        gui.getGraphPanel().updateRegion(Double.parseDouble(gui.getX0Input()), xn, yMin, yMax);
+        gui.getGraphPanel().updateDots(points);
+        if(yInputted) {
+            gui.getGraphPanel().updateYFunction(exactParser);
+        } else {
+            gui.getGraphPanel().updateYFunction(null);
         }
-    }*/
+        gui.getGraphPanel().repaint(0, 0, 400, 400);
+    }
 }

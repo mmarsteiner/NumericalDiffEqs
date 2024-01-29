@@ -7,10 +7,8 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class EquationParser {
-    private String expr;
-    private ArrayDeque<Token> eqnStack;
+    private final ArrayDeque<Token> eqnStack;
     public EquationParser(String expr) {
-        this.expr = expr;
         ArrayDeque<Token> rawTokens = readDataToStack(expr);
         eqnStack = createEvalStack(rawTokens);
     }
@@ -28,19 +26,19 @@ public class EquationParser {
         while(!eqn.isEmpty()) {
             Token t = eqn.removeLast();
             if(t instanceof TokenConstant) {
-                operandStack.push(((TokenConstant) t).getValue());
+                operandStack.push(((TokenConstant) t).value());
             } else if(t instanceof TokenVariable) {
-                char label = ((TokenVariable) t).getVarName();
+                char label = ((TokenVariable) t).varName();
                 if(!variableValues.containsKey(label)) throw new IllegalArgumentException("Value for variable '" + label + "' not supplied");
                 operandStack.push(variableValues.get(label));
             } else if(t instanceof TokenUnaryOp) {
                 if(operandStack.isEmpty()) throw new IllegalStateException("Unary op has no available operands");
-                operandStack.push(((TokenUnaryOp) t).getEval().apply(operandStack.pop()));
+                operandStack.push(((TokenUnaryOp) t).eval().apply(operandStack.pop()));
             } else if(t instanceof TokenBinaryOp) {
                 if(operandStack.size() < 2) throw new IllegalStateException("Binary op has too few available operands");
                 double val1 = operandStack.pop();
                 double val2 = operandStack.pop();
-                operandStack.push(((TokenBinaryOp) t).getEval().apply(val2, val1));
+                operandStack.push(((TokenBinaryOp) t).eval().apply(val2, val1));
             } else {
                 throw new IllegalStateException("Invalid postfix notation");
             }
@@ -66,7 +64,7 @@ public class EquationParser {
             } else if(t instanceof TokenBinaryOp) {
                 while(!opStack.isEmpty() &&
                         !(opStack.peekFirst() instanceof TokenLeftParen) &&
-                        getOpPrecedence(opStack.peekFirst().getLabel()) >= getOpPrecedence(t.getLabel())) {
+                        getOpPrecedence(opStack.peekFirst().label()) >= getOpPrecedence(t.label())) {
                     evalStack.addFirst(opStack.removeFirst());
                 }
                 opStack.push(t);
@@ -164,62 +162,62 @@ public class EquationParser {
             //unary ops
             //negation is '_' to avoid confusion with subtraction
             if(currChar == '_') {
-                t = new TokenUnaryOp("_", (x) -> (-1 * x), true);
+                t = new TokenUnaryOp("_", (x) -> (-1 * x));
                 res.addFirst(t);
                 idx++;
                 continue;
             } else if(fourChars != null && fourChars.equalsIgnoreCase("sqrt")) {
-                t = new TokenUnaryOp("sqrt", Math::sqrt, true);
+                t = new TokenUnaryOp("sqrt", Math::sqrt);
                 res.addFirst(t);
                 idx += 4;
                 continue;
             } else if(fourChars != null && fourChars.equalsIgnoreCase("cbrt")) {
-                t = new TokenUnaryOp("cbrt", Math::cbrt, true);
+                t = new TokenUnaryOp("cbrt", Math::cbrt);
                 res.addFirst(t);
                 idx += 4;
                 continue;
             } else if(twoChars != null && twoChars.equalsIgnoreCase("ln")) {
-                t = new TokenUnaryOp("ln", Math::log, true);
+                t = new TokenUnaryOp("ln", Math::log);
                 res.addFirst(t);
                 idx += 2;
                 continue;
             } else if(threeChars != null && threeChars.equalsIgnoreCase("exp")) {
-                t = new TokenUnaryOp("exp", Math::exp, true);
+                t = new TokenUnaryOp("exp", Math::exp);
                 res.addFirst(t);
                 idx += 3;
                 continue;
             } else if(threeChars != null && threeChars.equalsIgnoreCase("log")) {
-                t = new TokenUnaryOp("log", Math::log10, true);
+                t = new TokenUnaryOp("log", Math::log10);
                 res.addFirst(t);
                 idx += 3;
                 continue;
             } else if(threeChars != null && threeChars.equalsIgnoreCase("sin")) {
-                t = new TokenUnaryOp("sin", Math::sin, true);
+                t = new TokenUnaryOp("sin", Math::sin);
                 res.addFirst(t);
                 idx += 3;
                 continue;
             } else if(threeChars != null && threeChars.equalsIgnoreCase("cos")) {
-                t = new TokenUnaryOp("cos", Math::cos, true);
+                t = new TokenUnaryOp("cos", Math::cos);
                 res.addFirst(t);
                 idx += 3;
                 continue;
             } else if(threeChars != null && threeChars.equalsIgnoreCase("tan")) {
-                t = new TokenUnaryOp("tan", Math::tan, true);
+                t = new TokenUnaryOp("tan", Math::tan);
                 res.addFirst(t);
                 idx += 3;
                 continue;
             } else if(sixChars != null && sixChars.equalsIgnoreCase("arcsin")) {
-                t = new TokenUnaryOp("arcsin", Math::asin, true);
+                t = new TokenUnaryOp("arcsin", Math::asin);
                 res.addFirst(t);
                 idx += 6;
                 continue;
             } else if(sixChars != null && sixChars.equalsIgnoreCase("arccos")) {
-                t = new TokenUnaryOp("arccos", Math::acos, true);
+                t = new TokenUnaryOp("arccos", Math::acos);
                 res.addFirst(t);
                 idx += 6;
                 continue;
             } else if(sixChars != null && sixChars.equalsIgnoreCase("arctan")) {
-                t = new TokenUnaryOp("arctan", Math::atan, true);
+                t = new TokenUnaryOp("arctan", Math::atan);
                 res.addFirst(t);
                 idx += 6;
                 continue;

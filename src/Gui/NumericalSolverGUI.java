@@ -5,8 +5,6 @@ import NumericalSolvers.ImpEulerSolver;
 import NumericalSolvers.RK4Solver;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class NumericalSolverGUI {
     private JTextField dydxInputField;
@@ -21,6 +19,7 @@ public class NumericalSolverGUI {
     private JTextArea outputTextArea;
     private JTextField x0InputField;
     private JTextField y0InputField;
+    private GraphPanel graphPanel;
     private ButtonGroup methodSelection;
     private String dydxInput;
     private String hInput;
@@ -31,16 +30,13 @@ public class NumericalSolverGUI {
     private String y0Input;
 
     public NumericalSolverGUI() {
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                if(eulersMethodRadioButton.isSelected()) {
-                    solveWithEuler();
-                } else if(improvedEulersMethodRadioButton.isSelected()) {
-                    solveWithImpEuler();
-                } else { //rk4 chosen
-                    solveWithRK4();
-                }
+        calculateButton.addActionListener(actionEvent -> {
+            if(eulersMethodRadioButton.isSelected()) {
+                solveWithEuler();
+            } else if(improvedEulersMethodRadioButton.isSelected()) {
+                solveWithImpEuler();
+            } else { //rk4 chosen
+                solveWithRK4();
             }
         });
     }
@@ -69,7 +65,7 @@ public class NumericalSolverGUI {
         this.dydxInput = dydxInput;
     }
 
-    public String gethInput() {
+    public String getHInput() {
         return hInput;
     }
 
@@ -119,7 +115,7 @@ public class NumericalSolverGUI {
 
     public void setData(NumericalSolverGUI data) {
         dydxInputField.setText(data.getDydxInput());
-        hInputField.setText(data.gethInput());
+        hInputField.setText(data.getHInput());
         x0InputField.setText(data.getX0Input());
         y0InputField.setText(data.getY0Input());
         iterationsInputField.setText(data.getIterationsInput());
@@ -137,21 +133,11 @@ public class NumericalSolverGUI {
         data.setOutputText(outputTextArea.getText());
     }
 
-    public boolean isModified(NumericalSolverGUI data) {
-        if (dydxInputField.getText() != null ? !dydxInputField.getText().equals(data.getDydxInput()) : data.getDydxInput() != null)
-            return true;
-        if (hInputField.getText() != null ? !hInputField.getText().equals(data.gethInput()) : data.gethInput() != null)
-            return true;
-        if (x0InputField.getText() != null ? !x0InputField.getText().equals(data.getX0Input()) : data.getX0Input() != null)
-            return true;
-        if (y0InputField.getText() != null ? !y0InputField.getText().equals(data.getY0Input()) : data.getY0Input() != null)
-            return true;
-        if (iterationsInputField.getText() != null ? !iterationsInputField.getText().equals(data.getIterationsInput()) : data.getIterationsInput() != null)
-            return true;
-        if (exactSolutionInputField.getText() != null ? !exactSolutionInputField.getText().equals(data.getExactSolutionInput()) : data.getExactSolutionInput() != null)
-            return true;
-        if (outputTextArea.getText() != null ? !outputTextArea.getText().equals(data.getOutputText()) : data.getOutputText() != null)
-            return true;
-        return false;
+    public GraphPanel getGraphPanel() {
+        return graphPanel;
+    }
+
+    private void createUIComponents() {
+        graphPanel = new GraphPanel();
     }
 }

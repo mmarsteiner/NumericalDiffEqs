@@ -2,7 +2,7 @@ package Parser.Tokens;
 
 public class TokenRightParen implements Token {
     @Override
-    public String getLabel() {
+    public String label() {
         return ")";
     }
 }
