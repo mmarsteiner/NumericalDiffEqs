@@ -46,11 +46,11 @@ public class EulerSolver implements NumericalSolver {
             }
             resultBuilder.append(String.format("\n|%-3d|%-10f|%-10f|%-10f|%-10f|%-10f|", n, xn, yn, y, error, relError));
             points.add(new DoublePoint(xn, yn));
-            if(y > yMax) {
-                yMax = y;
+            if(yn > yMax) {
+                yMax = yn;
             }
-            if(y < yMin) {
-                yMin = y;
+            if(yn < yMin) {
+                yMin = yn;
             }
             xn += h;
             yn = yn1;

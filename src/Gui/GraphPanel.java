@@ -51,7 +51,6 @@ public class GraphPanel extends JPanel {
     public void updateYFunction(EquationParser yParser) {
         drawingY = !(yParser == null);
         if(drawingY) {
-            ArrayList<DoublePoint> exactSolutions = new ArrayList<>();
             double x = xMin;
             double increment = (xMax - xMin) / RESOLUTION;
             for(int idx = 0; idx < RESOLUTION; idx++) {
