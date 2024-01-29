@@ -84,6 +84,12 @@ public class GraphPanel extends JPanel {
             for(DoublePoint p : orderedPairs) {
                 plotPoint(g2d, p.x, p.y);
             }
+            if(xMin < 0 && xMax > 0) {
+                g2d.drawLine(convertX(0), TOP, convertX(0), BOTTOM);
+            }
+            if(yMin < 0 && yMax > 0) {
+                g2d.drawLine(LEFT, convertY(0), RIGHT, convertY(0));
+            }
         }
 
         //plot exact solution

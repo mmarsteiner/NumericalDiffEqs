@@ -9,12 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7eae4ae7-b61f-4f7a-8ece-224d6ed3b62a" name="Changes" comment="add graph tool">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="7eae4ae7-b61f-4f7a-8ece-224d6ed3b62a" name="Changes" comment="fix bug where window would not choose correct bounds if exact solution was not given">
       <change beforePath="$PROJECT_DIR$/src/Gui/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/GraphPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NumericalSolvers/EulerSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NumericalSolvers/EulerSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NumericalSolvers/ImpEulerSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NumericalSolvers/ImpEulerSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NumericalSolvers/RK4Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NumericalSolvers/RK4Solver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706487060888</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix bug where window would not choose correct bounds if exact solution was not given">
+      <created>1706497813597</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1706497813597</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,7 +153,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="add graph tool" />
-    <option name="LAST_COMMIT_MESSAGE" value="add graph tool" />
+    <MESSAGE value="fix bug where window would not choose correct bounds if exact solution was not given" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug where window would not choose correct bounds if exact solution was not given" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -159,11 +163,6 @@
           <properties class="java.lang.IllegalStateException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Gui/GraphPanel.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
