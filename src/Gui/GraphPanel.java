@@ -58,7 +58,6 @@ public class GraphPanel extends JPanel {
                 exactYPoints[idx] = convertY(yParser.eval(x, 0));
                 x += increment;
             }
-
         }
     }
 
@@ -72,12 +71,11 @@ public class GraphPanel extends JPanel {
         super.paintComponent(g);
 
         Graphics2D g2d = (Graphics2D) g;
+        FontMetrics fm = g2d.getFontMetrics();
 
         //draw axes and labels
         g2d.drawLine(LEFT, TOP, LEFT, BOTTOM);
         g2d.drawLine(LEFT, BOTTOM, RIGHT, BOTTOM);
-        g2d.drawString("y", 10, 10);
-        g2d.drawString("x", 390, 393);
 
         //plot points
         if(orderedPairs != null) {
@@ -90,10 +88,26 @@ public class GraphPanel extends JPanel {
             if(yMin < 0 && yMax > 0) {
                 g2d.drawLine(LEFT, convertY(0), RIGHT, convertY(0));
             }
+
+            //labels on axes
+            for(double y = yMin; convertY(y) >= TOP; y += ((yMax-yMin)/5)) {
+                String display = String.format("%.1f", y);
+                int displayY = (int) (convertY(y)+0.5*fm.getStringBounds(display, g).getHeight());
+                g2d.drawString(display, 2, displayY);
+                g2d.drawLine(LEFT - 1, convertY(y), LEFT + 1, convertY(y));
+            }
+            for(double x = xMin; convertX(x) <= RIGHT; x += (xMax-xMin)/5) {
+                String display = String.format("%.1f", x);
+                int displayX = (int) (convertX(x)-0.5*fm.getStringBounds(display, g).getWidth());
+                g2d.drawString(display, displayX, BOTTOM + 15);
+                g2d.drawLine(convertX(x), BOTTOM - 1, convertX(x), BOTTOM + 1);
+            }
         }
 
         //plot exact solution
-        g2d.drawPolyline(exactXPoints, exactYPoints, RESOLUTION);
+        if(drawingY) {
+            g2d.drawPolyline(exactXPoints, exactYPoints, RESOLUTION);
+        }
     }
 
     private void plotPoint(Graphics2D g2d, double x, double y) {

@@ -23,9 +23,9 @@ public class RK4Solver implements NumericalSolver {
         double h = Double.parseDouble(gui.getHInput());
         double xn = Double.parseDouble(gui.getX0Input());
         double yn = Double.parseDouble(gui.getY0Input());
-        double yMin = yn;
+        double yMin = 0;
         double yMax = yn;
-        StringBuilder resultBuilder = new StringBuilder("|n  |x_n       |y_n       |y         |Error     |% Error   |");
+        StringBuilder resultBuilder = new StringBuilder("|n  |x_n       |y_n       |y         |Abs Error |% Error   | |k1        |k2        |k3        |k4        |y_(n+1)   |");
         ArrayList<DoublePoint> points = new ArrayList<>();
         while(n <= iterations) {
             double k1 = dydxParser.eval(xn, yn);
@@ -46,7 +46,11 @@ public class RK4Solver implements NumericalSolver {
                 //most likely the user just didnt enter an expression for y
                 yInputted = false;
             }
-            resultBuilder.append(String.format("\n|%-3d|%-10f|%-10f|%-10f|%-10f|%-10f|", n, xn, yn, y, error, relError));
+            if(yInputted) {
+                resultBuilder.append(String.format("\n|%-3d|%-10f|%-10f|%-10f|%-10f|%-10f| |%-10f|%-10f|%-10f|%-10f|%-10f|", n, xn, yn, y, Math.abs(error), relError, k1, k2, k3, k4, yn1));
+            } else {
+                resultBuilder.append(String.format("\n|%-3d|%-10f|%-10f| |%-10f|%-10f|%-10f|%-10f|%-10f|", n, xn, yn, k1, k2, k3, k4, yn1));
+            }
             points.add(new DoublePoint(xn, yn));
             if(yn > yMax) {
                 yMax = yn;
@@ -58,9 +62,12 @@ public class RK4Solver implements NumericalSolver {
             yn = yn1;
             n++;
         }
+        if(!yInputted) {
+            resultBuilder.replace(0, 117, "|n  |x_n       |y_n       | |k1        |k2        |k3        |k4        |y_(n+1)   |");
+        }
         gui.setOutputText(resultBuilder.toString());
         gui.setData(gui);
-        gui.getGraphPanel().updateRegion(Double.parseDouble(gui.getX0Input()), xn, yMin, yMax);
+        gui.getGraphPanel().updateRegion(Double.parseDouble(gui.getX0Input()), xn-h, yMin, yMax);
         gui.getGraphPanel().updateDots(points);
         if(yInputted) {
             gui.getGraphPanel().updateYFunction(exactParser);

@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="16" column-count="10" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="5" left="5" bottom="5" right="5"/>
     <constraints>
-      <xy x="20" y="20" width="1118" height="642"/>
+      <xy x="20" y="20" width="1118" height="842"/>
     </constraints>
     <properties>
       <autoscrolls value="false"/>
@@ -296,7 +296,9 @@
           <component id="c89cf" class="javax.swing.JTextArea" binding="outputTextArea">
             <constraints/>
             <properties>
+              <autoscrolls value="false"/>
               <background color="-5460820"/>
+              <caretColor color="-5460820"/>
               <editable value="false"/>
               <font name="Monospaced"/>
               <foreground color="-16777216"/>

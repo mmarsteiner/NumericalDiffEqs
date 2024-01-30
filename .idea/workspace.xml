@@ -9,8 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7eae4ae7-b61f-4f7a-8ece-224d6ed3b62a" name="Changes" comment="fix bug where window would not choose correct bounds if exact solution was not given">
+    <list default="true" id="7eae4ae7-b61f-4f7a-8ece-224d6ed3b62a" name="Changes" comment="make x=0 and y=0 display when within the bounds of the displayed region">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Gui/GraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/GraphPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Gui/NumericalSolverGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gui/NumericalSolverGUI.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NumericalSolvers/EulerSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NumericalSolvers/EulerSolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NumericalSolvers/ImpEulerSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NumericalSolvers/ImpEulerSolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NumericalSolvers/RK4Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NumericalSolvers/RK4Solver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706497813597</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="make x=0 and y=0 display when within the bounds of the displayed region">
+      <created>1706499098577</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1706499098577</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,7 +167,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="add graph tool" />
     <MESSAGE value="fix bug where window would not choose correct bounds if exact solution was not given" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug where window would not choose correct bounds if exact solution was not given" />
+    <MESSAGE value="make x=0 and y=0 display when within the bounds of the displayed region" />
+    <option name="LAST_COMMIT_MESSAGE" value="make x=0 and y=0 display when within the bounds of the displayed region" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
